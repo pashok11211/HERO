@@ -40,4 +40,3 @@ class Hero:
 
     def add_skill(self):
         pass
-
