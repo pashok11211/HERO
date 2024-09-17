@@ -4,12 +4,28 @@ class Hero:
     __warrior_skills = ["удар в прыжке", "вой", "берсерк"]
     __ranger_skills = ["быстрая стрельба", "двойной выстрел", "скрытность"]
 
-    def __init__(self, name):
+    def __init__(self, name, character_class):
         """Написан конструктор для класса"""
-        self.name = name
-        self.my_hero_skills = []
-        self.level = 0
-        self.exp = 0
+        self.__name = name
+        self.__charter_class = character_class
+        self.__my_hero_skills = []
+        self.__level = 0
+        self.__exp = 0
+
+    def name(self):
+        return self.__name
+
+    def character_class(self):
+        return self.__charter_class
+
+    def my_hero_skills(self):
+        return self.__my_hero_skills
+
+    def level(self):
+        return self.__level
+
+    def exp(self):
+        return self.__exp
 
     def get_skills(self, character_class):
         """Добавлен геттер для навыков, результат зависит от выбранного класса"""
@@ -23,17 +39,17 @@ class Hero:
             exit("Ошибка перезапустите программу!")
 
     def get_new_level(self):
-        if self.exp >= 1000:
-            self.level = 3
+        if self.__exp >= 1000:
+            self.__level = 3
             self.add_skill()
-        elif self.exp >= 500:
-            self.level = 2
+        elif self.__exp >= 500:
+            self.__level = 2
             self.add_skill()
-        elif self.exp >= 200:
-            self.level = 1
+        elif self.__exp >= 200:
+            self.__level = 1
             self.add_skill()
         else:
-            self.level = 0
+            self.__level = 0
         return f"Герой {self.name}, теперь {self.level} уровня, навыки: {', '.join(self.my_hero_skills)}"
 
     def add_exp(self, exp):
