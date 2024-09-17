@@ -23,12 +23,21 @@ class Hero:
         if self.exp >= 1000:
             self.level = 3
             self.add_skill()
-        elif self.exp >= 1000:
+        elif self.exp >= 500:
             self.level = 2
             self.add_skill()
-        elif self.exp >= 1000:
+        elif self.exp >= 200:
             self.level = 1
             self.add_skill()
         else:
             self.level = 0
         return f"Герой {self.name}, теперь {self.level} уровня, навыки: {', '.join(self.my_hero_skills)}"
+
+    def add_exp(self, exp):
+        self.exp += exp
+        new_level = self.get_new_level()
+        return new_level
+
+    def add_skill(self):
+        pass
+
