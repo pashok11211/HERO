@@ -16,6 +16,19 @@ class Hero:
             return self.__mage_skills
         elif character_class == 'рейнджер':
             return self.__ranger_skills
+        else:
+            exit("Ошибка перезапустите программу!")
 
-    def get_level(self):
-        pass
+    def get_new_level(self):
+        if self.exp >= 1000:
+            self.level = 3
+            self.add_skill()
+        elif self.exp >= 1000:
+            self.level = 2
+            self.add_skill()
+        elif self.exp >= 1000:
+            self.level = 1
+            self.add_skill()
+        else:
+            self.level = 0
+        return f"Герой {self.name}, теперь {self.level} уровня, навыки: {', '.join(self.my_hero_skills)}"
