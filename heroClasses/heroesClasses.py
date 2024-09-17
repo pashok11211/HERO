@@ -1,15 +1,18 @@
 class Hero:
+    """Добавлен базовый класс Hero"""
     __mage_skills = ["огненный шар", "ледяная стрела", "удар молнии"]
     __warrior_skills = ["удар в прыжке", "вой", "берсерк"]
     __ranger_skills = ["быстрая стрельба", "двойной выстрел", "скрытность"]
 
     def __init__(self, name):
+        """Написан конструктор для класса"""
         self.name = name
         self.my_hero_skills = []
         self.level = 0
         self.exp = 0
 
     def get_skills(self, character_class):
+        """Добавлен геттер для навыков, результат зависит от выбранного класса"""
         if character_class == 'воин':
             return self.__warrior_skills
         elif character_class == 'маг':
