@@ -1,6 +1,6 @@
 class Hero:
     """Добавлен базовый класс Hero"""
-    __mage_skills = ["огненный шар", "ледяная стрела", "удар молнии"]
+    mage_skills = ["огненный шар", "ледяная стрела", "удар молнии"]
     __warrior_skills = ["удар в прыжке", "вой", "берсерк"]
     __ranger_skills = ["быстрая стрельба", "двойной выстрел", "скрытность"]
 
@@ -12,24 +12,19 @@ class Hero:
         self.__level = 0
         self.__exp = 0
 
-    def name(self):
-        """"геттер для имени"""
+    def get_name(self):
         return self.__name
 
-    def character_class(self):
-        """"геттер для класса"""
+    def get_character_class(self):
         return self.__character_class
 
-    def my_hero_skills(self):
-        """"геттер для навыков"""
+    def get_my_hero_skills(self):
         return self.__my_hero_skills
 
-    def level(self):
-        """"геттер для уровня"""
+    def get_level(self):
         return self.__level
 
-    def exp(self):
-        """"геттер для опыта"""
+    def get_exp(self):
         return self.__exp
 
     def get_skills(self):
@@ -37,14 +32,14 @@ class Hero:
         if self.__character_class == 'воин':
             return self.__warrior_skills
         elif self.__character_class == 'маг':
-            return self.__mage_skills
+            return self.mage_skills
         elif self.__character_class == 'рейнджер':
             return self.__ranger_skills
         else:
-            exit("Ошибка перезапустите программу!")
+            exit("Ошибка, перезапустите программу!")
 
     def get_new_level(self):
-        """"метод для проверки получения нового уровня"""
+        """Метод для проверки получения нового уровня"""
         if self.__exp >= 1000:
             self.__level = 3
             self.add_skill()
@@ -56,65 +51,37 @@ class Hero:
             self.add_skill()
         else:
             self.__level = 0
-        return f"Герой {self.name}, теперь {self.level} уровня, навыки: {', '.join(self.__my_hero_skills)}"
+        return f"Герой {self.get_name()}, теперь {self.get_level()} уровня, навыки: {', '.join(self.get_my_hero_skills())}"
 
     def add_exp(self, exp):
-        """метод для добавления опыта"""
+        """Метод для добавления опыта"""
         self.__exp += exp
-        new_level = self.get_new_level()
-        return new_level
+        return self.get_new_level()
 
     def add_skill(self):
-        pass
+        """Метод для добавления навыка"""
+        skills = self.get_skills()
+        for _ in range(self.get_level()):
+            while True:
+                print(f"{self.get_name()}, выберите навык: {', '.join(skills)}")
+                new_skill = input("Введите навык: ")
+                if new_skill in skills:
+                    self.__my_hero_skills.append(new_skill)
+                    skills.remove(new_skill)
+                    break
+                else:
+                    print("НЕВЕРНЫЙ ВЫБОР!! попробуйте снова.")
+            if self.get_level() == len(self.__my_hero_skills):
+                break
+        return f"Добавлены навыки: {', '.join(self.get_my_hero_skills())}"
 
 
 class MyHero(Hero):
+    """Класс наследник"""
 
- """"класс наследник"""
+    def __init__(self, name, character_class):
+        """Метод инициализации"""
+        super().__init__(name, character_class)
 
-def __init__(self, name, character_class):
-    """"метод инициализации"""
-    super().__init__(name, character_class)
-    self.skill_list = self.skill_list()
-
-
-def add_skill(self):
-    """"метод для добавления навыка"""
-    for _ in range(self.get_new_level()):
-        while True:
-            print(f"доступные навыки: {", ".join(self.skill_list)}")
-            new_skill = input("выберите навык: ")
-            if new_skill in self.skill_list:
-                self.__my_hero_skills.append(new_skill)
-                self.skill_list.remove(new_skill)
-                break
-            else:
-                print("такого нет навыка в списке данных попробуйте снова")
-        if self.get_level() == len(self.__my_hero_skills):
-            break
-    return f"добавлены навыки: {", ".join(self.get_my_hero_skills())}"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def add_skill(self):
+        super().add_skill()
