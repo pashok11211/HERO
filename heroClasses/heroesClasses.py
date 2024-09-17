@@ -44,6 +44,7 @@ class Hero:
             exit("Ошибка перезапустите программу!")
 
     def get_new_level(self):
+        """"метод для проверки получения нового уровня"""
         if self.__exp >= 1000:
             self.__level = 3
             self.add_skill()
